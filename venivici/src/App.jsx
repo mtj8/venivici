@@ -14,6 +14,7 @@ function App() {
     year: [],
   });
 
+  // calling and calls are used to track the number of calls made to the API
   const [calling, setCalling] = useState(false);
   const [calls, setCalls] = useState(0);
 
@@ -29,11 +30,11 @@ function App() {
       const response = await fetch(url);
       ({ data } = await response.json());
       console.log(data);
-    } while (data.members < 50000 || 
-      data.status === "Not yet aired" ||
-      data.genres.some(genre => bannedAttributes.genres.includes(genre.name) ||
-        ["Erotica, Hentai"].includes(genre.name)) ||
-      bannedAttributes.rating.includes(data.rating))
+    } while (data.members < 50000 ||  // minimum popularity check (there's a popularity attribute but idk what it means)
+      data.status === "Not yet aired" || // should've aired or is airing
+      data.genres.some(genre => bannedAttributes.genres.includes(genre.name) || // removed genres
+        ["Erotica, Hentai"].includes(genre.name)) || // default removed genres (cannot add these)
+      bannedAttributes.rating.includes(data.rating)) // removed ratings
   
     setCurrentAnime(data);
     setPrevAnime([...prevAnime, data]);
