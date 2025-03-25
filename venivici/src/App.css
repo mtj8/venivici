@@ -53,6 +53,23 @@
   width: 80%;
 }
 
-.gallery {
+.gallery-container {
   width: 20%;
+}
+
+li {
+  list-style-type: none;
+}
+
+.anime-attributes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.anime-attribute {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
